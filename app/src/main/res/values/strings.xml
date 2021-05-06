@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Lab2_0</string>
+
+    <string name="value_settings">设置</string>
+    <string name="value_back">返回</string>
+    <string name="value_apply">应用</string>
+
+    <string name="value_background_color">背景颜色：</string>
+    <string name="value_font_size">字体大小：</string>
+    <string name="value_font_color">字体颜色：</string>
+
+    <string name="value_id">id</string>
+    <string name="value_name">name</string>
+    <string name="value_gender">gender</string>
+    <string name="value_department">department</string>
+    <string name="value_salary">salary</string>
+
+    <string name="example_id">1</string>
+    <string name="example_name">Tom</string>
+    <string name="example_gender">male</string>
+    <string name="example_department">computer</string>
+    <string name="example_salary">5400</string>
+
+    <string-array name="colors">
+        <item>黑色</item>
+        <item>白色</item>
+        <item>红色</item>
+        <item>绿色</item>
+        <item>蓝色</item>
+    </string-array>
+
+    <string-array name="sizes">
+        <item>16</item>
+        <item>18</item>
+        <item>20</item>
+    </string-array>
 </resources>
