@@ -3,6 +3,8 @@ package com.example.lab2_0.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -42,60 +44,86 @@ public class SettingsActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> bgColorAdapter = ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
         bgColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bgColorSpinner.setAdapter(bgColorAdapter);
-        bgColorSpinner.setOnItemClickListener((parent, view, position, id) -> {
-            String selected = parent.getItemAtPosition(position).toString().trim();
-            switch (selected) {
-                case "黑色":
-                    fontColor = "black";
-                    break;
-                case "白色":
-                    fontColor = "white";
-                    break;
-                case "红色":
-                    bgColor = "red";
-                    break;
-                case "绿色":
-                    bgColor = "green";
-                    break;
-                case "蓝色":
-                    bgColor = "blue";
-                    break;
-                default:
-                    break;
+        bgColorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = parent.getItemAtPosition(position).toString().trim();
+                switch (selected) {
+                    case "黑色":
+                        fontColor = "black";
+                        break;
+                    case "白色":
+                        fontColor = "white";
+                        break;
+                    case "红色":
+                        bgColor = "red";
+                        break;
+                    case "绿色":
+                        bgColor = "green";
+                        break;
+                    case "蓝色":
+                        bgColor = "blue";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
         Spinner fontSizeSpinner = findViewById(R.id.font_size_spinner);
-        ArrayAdapter<CharSequence> fontSizeAdapter = ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> fontSizeAdapter = ArrayAdapter.createFromResource(this, R.array.sizes, android.R.layout.simple_spinner_item);
         fontSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fontSizeSpinner.setAdapter(fontSizeAdapter);
-        fontSizeSpinner.setOnItemClickListener((parent, view, position, id) -> fontSize = parent.getItemAtPosition(position).toString().trim());
+        fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                fontSize = parent.getItemAtPosition(position).toString().trim();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         Spinner fontColorSpinner = findViewById(R.id.font_color_spinner);
         ArrayAdapter<CharSequence> fontColorAdapter = ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
         fontColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fontColorSpinner.setAdapter(fontColorAdapter);
-        fontColorSpinner.setOnItemClickListener((parent, view, position, id) -> {
-            String selected = parent.getItemAtPosition(position).toString().trim();
-            switch (selected) {
-                case "黑色":
-                    fontColor = "black";
-                    break;
-                case "白色":
-                    fontColor = "white";
-                    break;
-                case "红色":
-                    fontColor = "red";
-                    break;
-                case "绿色":
-                    fontColor = "green";
-                    break;
-                case "蓝色":
-                    fontColor = "blue";
-                    break;
-                default:
-                    break;
+        fontColorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = parent.getItemAtPosition(position).toString().trim();
+                switch (selected) {
+                    case "黑色":
+                        fontColor = "black";
+                        break;
+                    case "白色":
+                        fontColor = "white";
+                        break;
+                    case "红色":
+                        fontColor = "red";
+                        break;
+                    case "绿色":
+                        fontColor = "green";
+                        break;
+                    case "蓝色":
+                        fontColor = "blue";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }

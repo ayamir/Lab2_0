@@ -13,7 +13,7 @@ import com.example.lab2_0.bean.TableRow;
 
 import java.util.List;
 
-public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.RowViewHolder> {
+public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.TableRowViewHolder> {
     private final List<TableRow> tableRows;
     private int textSize;
 
@@ -21,14 +21,14 @@ public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.RowVie
         this.tableRows = tableRows;
     }
 
-    public static class RowViewHolder extends RecyclerView.ViewHolder {
+    public static class TableRowViewHolder extends RecyclerView.ViewHolder {
         TextView tvId;
         TextView tvName;
         TextView tvGender;
         TextView tvDepartment;
         TextView tvSalary;
 
-        public RowViewHolder(@NonNull View itemView) {
+        public TableRowViewHolder(@NonNull View itemView) {
             super(itemView);
             tvId = itemView.findViewById(R.id.tv_id);
             tvName = itemView.findViewById(R.id.tv_name);
@@ -40,19 +40,19 @@ public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.RowVie
 
     @NonNull
     @Override
-    public RowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TableRowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.table_row_layout, parent, false);
-        return new RowViewHolder(view);
+        return new TableRowViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RowViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TableRowViewHolder holder, int position) {
         TableRow tableRow = tableRows.get(position);
         holder.tvId.setText(tableRow.getId());
         holder.tvName.setText(tableRow.getName());
         holder.tvGender.setText(tableRow.getGender());
         holder.tvDepartment.setText(tableRow.getDepartment());
-        holder.tvDepartment.setText(tableRow.getSalary());
+        holder.tvSalary.setText(tableRow.getSalary());
     }
 
     @Override
