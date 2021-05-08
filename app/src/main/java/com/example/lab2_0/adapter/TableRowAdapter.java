@@ -48,11 +48,23 @@ public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.TableR
     @Override
     public void onBindViewHolder(@NonNull TableRowViewHolder holder, int position) {
         TableRow tableRow = tableRows.get(position);
-        holder.tvId.setText(tableRow.getId());
-        holder.tvName.setText(tableRow.getName());
-        holder.tvGender.setText(tableRow.getGender());
-        holder.tvDepartment.setText(tableRow.getDepartment());
-        holder.tvSalary.setText(tableRow.getSalary());
+        holder.tvId.setText(formatDisplay(tableRow.getId()));
+        holder.tvName.setText(formatDisplay(tableRow.getName()));
+        holder.tvGender.setText(formatDisplay(tableRow.getGender()));
+        holder.tvDepartment.setText(formatDisplay(tableRow.getDepartment()));
+        holder.tvSalary.setText(formatDisplay(tableRow.getSalary()));
+    }
+
+    private String formatDisplay(String string) {
+        String out;
+        if (string.length() == 0) {
+            out = "              ";
+        } else if (string.length() < 7) {
+            out = string + "    ";
+        } else {
+            out = string;
+        }
+        return out;
     }
 
     @Override

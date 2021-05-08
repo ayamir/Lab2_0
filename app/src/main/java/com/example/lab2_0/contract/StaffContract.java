@@ -1,9 +1,11 @@
 package com.example.lab2_0.contract;
 
 import android.content.ContentValues;
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class StaffContract {
+
     private StaffContract() {
     }
 
@@ -15,6 +17,10 @@ public class StaffContract {
         public static final String COLUMN_GENDER = "gender";
         public static final String COLUMN_DEPARTMENT = "department";
         public static final String COLUMN_SALARY = "salary";
+
+        public static final String AUTHORITY = "com.example.provider";
+        public static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
+        public static final Uri STAFF_URI = Uri.withAppendedPath(BASE_URI, TABLE_NAME);
     }
 
     public static final String SQL_CREATE_ENTRIES = "create table " + InfoEntry.TABLE_NAME + " (" +

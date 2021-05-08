@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
@@ -41,19 +40,16 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         Spinner bgColorSpinner = findViewById(R.id.bg_color_spinner);
-        ArrayAdapter<CharSequence> bgColorAdapter = ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
-        bgColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bgColorSpinner.setAdapter(bgColorAdapter);
         bgColorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected = parent.getItemAtPosition(position).toString().trim();
                 switch (selected) {
                     case "黑色":
-                        fontColor = "black";
+                        bgColor = "black";
                         break;
                     case "白色":
-                        fontColor = "white";
+                        bgColor = "white";
                         break;
                     case "红色":
                         bgColor = "red";
@@ -76,9 +72,6 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         Spinner fontSizeSpinner = findViewById(R.id.font_size_spinner);
-        ArrayAdapter<CharSequence> fontSizeAdapter = ArrayAdapter.createFromResource(this, R.array.sizes, android.R.layout.simple_spinner_item);
-        fontSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fontSizeSpinner.setAdapter(fontSizeAdapter);
         fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -93,9 +86,6 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         Spinner fontColorSpinner = findViewById(R.id.font_color_spinner);
-        ArrayAdapter<CharSequence> fontColorAdapter = ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
-        fontColorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fontColorSpinner.setAdapter(fontColorAdapter);
         fontColorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

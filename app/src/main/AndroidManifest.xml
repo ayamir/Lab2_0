@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab2_0">
-        <activity android:name=".activity.SettingsActivity"></activity>
+
+        <provider
+            android:name=".helper.MyContentProvider"
+            android:authorities="com.example.provide"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.SettingsActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
