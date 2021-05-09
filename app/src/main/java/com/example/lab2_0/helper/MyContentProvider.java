@@ -29,9 +29,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         String table = getTableName(uri);
-        mDatabase.delete(table, selection, selectionArgs);
-
-        return 0;
+        return mDatabase.delete(table, selection, selectionArgs);
     }
 
     @Override

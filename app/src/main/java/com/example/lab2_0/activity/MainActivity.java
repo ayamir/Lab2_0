@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     public final static String fontSizeString = "fontSize";
 
     private final MyDBHelper myDBHelper = new MyDBHelper(this);
-    private SharedPreferences pref;
     private final ArrayList<TableRow> tableRows = new ArrayList<>();
+    private SharedPreferences pref;
     private boolean isInitialized;
     private String bgColor;
     private String fontColor;
@@ -59,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
     private void initializeDB() {
         if (!isInitialized) {
             SQLiteDatabase db = myDBHelper.getWritableDatabase();
-            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("1", "Tom", "male", "computer", "5400"));
-            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("2", "Einstein", "male", "computer", "4800"));
-            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("3", "Lily", "female", "market", "5000"));
-            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("4", "Warner", "male", "market", ""));
-            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("5", "Napoleon", "male", "", ""));
+            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("Tom", "male", "computer", "5400"));
+            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("Einstein", "male", "computer", "4800"));
+            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("Lily", "female", "market", "5000"));
+            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("Warner", "male", "market", ""));
+            db.insert(StaffContract.InfoEntry.TABLE_NAME, null, getSqlInsert("Napoleon", "male", "", ""));
 
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean(isInitializedString, true);

@@ -12,7 +12,7 @@
 
         <provider
             android:name=".helper.MyContentProvider"
-            android:authorities="com.example.provide"
+            android:authorities="com.example.lab2_0.helper.MyContentProvider"
             android:enabled="true"
             android:exported="true" />
 
