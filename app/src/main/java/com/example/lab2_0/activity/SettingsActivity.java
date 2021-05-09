@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putString(fontColorString, fontColor);
             editor.putInt(fontSizeString, fontSize);
             editor.apply();
+            Toast.makeText(v.getContext(), "设置成功，重启应用生效！", Toast.LENGTH_SHORT).show();
         });
 
         Spinner bgColorSpinner = findViewById(R.id.bg_color_spinner);
