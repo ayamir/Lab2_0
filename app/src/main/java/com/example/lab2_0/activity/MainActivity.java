@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.lab2_0.R;
 import com.example.lab2_0.adapter.TableRowAdapter;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final MyDBHelper myDBHelper = new MyDBHelper(this);
     private final ArrayList<TableRow> tableRows = new ArrayList<>();
+    private RecyclerView rvTableRow;
     private SharedPreferences pref;
     private boolean isInitialized;
     private String bgColor;
@@ -50,10 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
         readSettings();
         initializeDB();
-        applySettings();
 
         readFromDB();
         bindItems();
+
+        applySettings();
     }
 
     private void initializeDB() {
@@ -85,9 +88,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void bindItems() {
+        SwipeRefreshLayout srlTableRow = findViewById(R.id.srl_table_row);
+        srlTableRow.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                srlTableRow.setRefreshing(true);
+                readFromDB();
+                rvTableRow.setAdapter(new TableRowAdapter(tableRows));
+                srlTableRow.setRefreshing(false);
+            }
+        });
+
         LinearLayoutManager staffInfoLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         TableRowAdapter tableRowAdapter = new TableRowAdapter(tableRows);
-        RecyclerView rvTableRow = findViewById(R.id.rv_table_row);
+        rvTableRow = findViewById(R.id.rv_table_row);
         rvTableRow.setLayoutManager(staffInfoLayoutManager);
         rvTableRow.setAdapter(tableRowAdapter);
 
@@ -104,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void readFromDB() {
+        tableRows.clear();
         SQLiteDatabase db = myDBHelper.getWritableDatabase();
         Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, "id asc", null);
         if (cursor.moveToFirst()) {

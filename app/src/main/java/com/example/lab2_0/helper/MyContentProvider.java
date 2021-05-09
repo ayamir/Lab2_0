@@ -11,10 +11,6 @@ import android.net.Uri;
 import com.example.lab2_0.contract.StaffContract;
 
 public class MyContentProvider extends ContentProvider {
-    private Context mContext;
-    private MyDBHelper myDBHelper;
-    private SQLiteDatabase mDatabase;
-
     public static final int STAFF_CODE = 1;
     static UriMatcher mMatcher;
 
@@ -22,6 +18,10 @@ public class MyContentProvider extends ContentProvider {
         mMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         mMatcher.addURI(StaffContract.InfoEntry.AUTHORITY, StaffContract.InfoEntry.TABLE_NAME, STAFF_CODE);
     }
+
+    private Context mContext;
+    private MyDBHelper myDBHelper;
+    private SQLiteDatabase mDatabase;
 
     public MyContentProvider() {
     }
