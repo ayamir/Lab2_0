@@ -6,16 +6,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.lab2_0.contract.StaffContract;
-
 import static com.example.lab2_0.contract.StaffContract.SQL_CREATE_ENTRIES;
 import static com.example.lab2_0.contract.StaffContract.SQL_DELETE_ENTRIES;
 
 public class MyDBHelper extends SQLiteOpenHelper {
     public static final int DB_VERSION = 1;
+    public final static String DB_NAME = "test.db";
 
     public MyDBHelper(@Nullable Context context) {
-        super(context, StaffContract.InfoEntry.TABLE_NAME, null, DB_VERSION);
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
