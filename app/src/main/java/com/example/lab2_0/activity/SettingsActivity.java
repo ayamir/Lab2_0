@@ -19,7 +19,7 @@ import static com.example.lab2_0.activity.MainActivity.prefName;
 
 public class SettingsActivity extends AppCompatActivity {
     private String bgColor;
-    private String fontSize;
+    private int fontSize;
     private String fontColor;
 
     @Override
@@ -35,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = getSharedPreferences(prefName, Context.MODE_PRIVATE).edit();
             editor.putString(bgColorString, bgColor);
             editor.putString(fontColorString, fontColor);
-            editor.putString(fontSizeString, fontSize);
+            editor.putInt(fontSizeString, fontSize);
             editor.apply();
         });
 
@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
         fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fontSize = parent.getItemAtPosition(position).toString().trim();
+                fontSize = Integer.parseInt(parent.getItemAtPosition(position).toString().trim());
             }
 
             @Override

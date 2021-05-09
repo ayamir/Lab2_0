@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void applySettings() {
         mainLayout.setBackgroundColor(Color.parseColor(bgColor));
+        rvTableRow.setAdapter(new TableRowAdapter(tableRows, fontSize, Color.parseColor(fontColor)));
     }
 
     private void readFromDB() {

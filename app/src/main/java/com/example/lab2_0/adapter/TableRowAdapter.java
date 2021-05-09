@@ -14,28 +14,19 @@ import com.example.lab2_0.bean.TableRow;
 import java.util.List;
 
 public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.TableRowViewHolder> {
+    private final int INVALID = -1;
     private final List<TableRow> tableRows;
-    private int textSize;
+    private int fontSize = INVALID;
+    private int fontColor = INVALID;
 
     public TableRowAdapter(List<TableRow> tableRows) {
         this.tableRows = tableRows;
     }
 
-    public static class TableRowViewHolder extends RecyclerView.ViewHolder {
-        TextView tvId;
-        TextView tvName;
-        TextView tvGender;
-        TextView tvDepartment;
-        TextView tvSalary;
-
-        public TableRowViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvId = itemView.findViewById(R.id.tv_id);
-            tvName = itemView.findViewById(R.id.tv_name);
-            tvGender = itemView.findViewById(R.id.tv_gender);
-            tvDepartment = itemView.findViewById(R.id.tv_department);
-            tvSalary = itemView.findViewById(R.id.tv_salary);
-        }
+    public TableRowAdapter(List<TableRow> tableRows, int fontSize, int fontColor) {
+        this.tableRows = tableRows;
+        this.fontSize = fontSize;
+        this.fontColor = fontColor;
     }
 
     @NonNull
@@ -53,6 +44,22 @@ public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.TableR
         holder.tvGender.setText(formatDisplay(tableRow.getGender()));
         holder.tvDepartment.setText(formatDisplay(tableRow.getDepartment()));
         holder.tvSalary.setText(formatDisplay(tableRow.getSalary()));
+
+        if (fontSize != INVALID) {
+            holder.tvId.setTextSize(fontSize);
+            holder.tvName.setTextSize(fontSize);
+            holder.tvGender.setTextSize(fontSize);
+            holder.tvDepartment.setTextSize(fontSize);
+            holder.tvSalary.setTextSize(fontSize);
+        }
+
+        if (fontColor != INVALID) {
+            holder.tvId.setTextColor(fontColor);
+            holder.tvName.setTextColor(fontColor);
+            holder.tvGender.setTextColor(fontColor);
+            holder.tvDepartment.setTextColor(fontColor);
+            holder.tvSalary.setTextColor(fontColor);
+        }
     }
 
     private String formatDisplay(String string) {
@@ -72,24 +79,20 @@ public class TableRowAdapter extends RecyclerView.Adapter<TableRowAdapter.TableR
         return tableRows.size();
     }
 
-    public void setTextSize(int textSize) {
-        this.textSize = textSize;
-        notifyDataSetChanged();
-    }
+    public static class TableRowViewHolder extends RecyclerView.ViewHolder {
+        TextView tvId;
+        TextView tvName;
+        TextView tvGender;
+        TextView tvDepartment;
+        TextView tvSalary;
 
-    public void insert(TableRow tableRow) {
-        tableRows.add(tableRow);
-        notifyItemChanged(tableRows.size() + 1);
-    }
-
-    public void delete(int position) {
-        tableRows.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    public void update(int position, TableRow other) {
-        TableRow tableRow = tableRows.get(position);
-        tableRow.cover(other);
-        notifyItemChanged(position);
+        public TableRowViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvId = itemView.findViewById(R.id.tv_id);
+            tvName = itemView.findViewById(R.id.tv_name);
+            tvGender = itemView.findViewById(R.id.tv_gender);
+            tvDepartment = itemView.findViewById(R.id.tv_department);
+            tvSalary = itemView.findViewById(R.id.tv_salary);
+        }
     }
 }
