@@ -89,14 +89,11 @@ public class MainActivity extends AppCompatActivity {
 
     void bindItems() {
         SwipeRefreshLayout srlTableRow = findViewById(R.id.srl_table_row);
-        srlTableRow.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                srlTableRow.setRefreshing(true);
-                readFromDB();
-                rvTableRow.setAdapter(new TableRowAdapter(tableRows));
-                srlTableRow.setRefreshing(false);
-            }
+        srlTableRow.setOnRefreshListener(() -> {
+            srlTableRow.setRefreshing(true);
+            readFromDB();
+            rvTableRow.setAdapter(new TableRowAdapter(tableRows));
+            srlTableRow.setRefreshing(false);
         });
 
         LinearLayoutManager staffInfoLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);

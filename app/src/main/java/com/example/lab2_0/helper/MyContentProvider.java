@@ -20,7 +20,6 @@ public class MyContentProvider extends ContentProvider {
     }
 
     private Context mContext;
-    private MyDBHelper myDBHelper;
     private SQLiteDatabase mDatabase;
 
     public MyContentProvider() {
@@ -50,7 +49,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mContext = getContext();
-        myDBHelper = new MyDBHelper(mContext);
+        MyDBHelper myDBHelper = new MyDBHelper(mContext);
         mDatabase = myDBHelper.getWritableDatabase();
         return true;
     }
